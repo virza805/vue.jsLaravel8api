@@ -1,4 +1,13 @@
 import App from "./components/App.vue"
+import Vue from "vue"
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faPlus)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
 /**
@@ -28,10 +37,13 @@ window.Vue = require('vue').default;
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+//  Vue.component('app', require('./components/App.vue'), {
+//     name: 'app',
+// });
 
 const app = new Vue({
     el: '#app',
-    comments:{
+    components:{
         App
     }
 });

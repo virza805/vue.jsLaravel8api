@@ -1,5 +1,14 @@
 <?php 
 
+# php artisan serve |=====> run this 
+
+# npm run watch 
+
+
+
+
+
+
 # composer create-project laravel/laravel crud |=> Installation Via Composer
 # cd crud
 # composer require laravel/ui |=> https://laravel.com/docs/7.x/frontend

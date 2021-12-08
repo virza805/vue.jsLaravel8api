@@ -1,6 +1,6 @@
 <template>
     <div class="item">
-        <input type="checkbox" v-model="item.completed" name="" id="">
+        <input type="checkbox" @change="updateTodo()" v-model="item.completed" name="" id="">
         <span :class="['itemText', item.completed ? 'completed' : '']">{{ item.todo }}</span>
 
         <button class="edit">
@@ -9,7 +9,7 @@
             />
         </button>
 
-        <button class="delete">
+        <button class="delete" @click="removeTodo()">
             <font-awesome-icon
             icon = "trash"
             />
@@ -19,7 +19,27 @@
 
 <script>
 export default {
-    props: ['item']
+    props: ['item'],
+    methods: {
+        updateTodo() {
+            axios.post('api/todo/update/'+this.item.id, {
+                completed: this.item.completed
+            }).then(response => {
+                if(response.status >= 200 && response.status < 300) {
+                    alert('Item Updated successfully')
+                    this.$emit('reloadTodos')
+                }
+            })
+        },
+        removeTodo() {
+            axios.get('api/todo/delete/'+this.item.id).then(response => {
+                if(response.status >= 200 && response.status < 300) {
+                    alert('Item Deleted successfully')
+                    this.$emit('reloadTodos')
+                }
+            })
+        }
+    },
 }
 </script>
 
@@ -56,4 +76,8 @@ export default {
         font-size: 17px;
         cursor: pointer;
     }
+    input[type="checkbox"] {
+    cursor: pointer;
+    }
+
 </style>

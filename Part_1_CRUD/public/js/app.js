@@ -12252,7 +12252,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['item']
+  props: ['item'],
+  methods: {
+    updateTodo: function updateTodo() {
+      var _this = this;
+
+      axios.post('api/todo/update/' + this.item.id, {
+        completed: this.item.completed
+      }).then(function (response) {
+        if (response.status >= 200 && response.status < 300) {
+          alert('Item Updated successfully');
+
+          _this.$emit('reloadTodos');
+        }
+      });
+    },
+    removeTodo: function removeTodo() {
+      var _this2 = this;
+
+      axios.get('api/todo/delete/' + this.item.id).then(function (response) {
+        if (response.status >= 200 && response.status < 300) {
+          alert('Item Deleted successfully');
+
+          _this2.$emit('reloadTodos');
+        }
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -12269,6 +12295,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _listItem_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listItem.vue */ "./resources/js/components/listItem.vue");
+//
 //
 //
 //
@@ -16842,7 +16869,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.item{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n.completed {\n    text-decoration: line-through;\n    color: #999999;\n}\n.itemText{\n    width: 100%;\n    margin-left: 20px;\n}\n.edit {\n    color: blue;\n    border-radius: 5px;\n    border:none;\n    outline: none;\n    margin-right: 5px;\n    background-color: white;\n    font-size: 17px;\n    cursor: pointer;\n}\n.delete {\n    color: red;\n    border:0px;\n    border-radius: 5px;\n    outline: none;\n    background-color: white;\n    font-size: 17px;\n    cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.item{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n.completed {\n    text-decoration: line-through;\n    color: #999999;\n}\n.itemText{\n    width: 100%;\n    margin-left: 20px;\n}\n.edit {\n    color: blue;\n    border-radius: 5px;\n    border:none;\n    outline: none;\n    margin-right: 5px;\n    background-color: white;\n    font-size: 17px;\n    cursor: pointer;\n}\n.delete {\n    color: red;\n    border:0px;\n    border-radius: 5px;\n    outline: none;\n    background-color: white;\n    font-size: 17px;\n    cursor: pointer;\n}\ninput[type=\"checkbox\"] {\ncursor: pointer;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -48775,27 +48802,32 @@ var render = function () {
           : _vm.item.completed,
       },
       on: {
-        change: function ($event) {
-          var $$a = _vm.item.completed,
-            $$el = $event.target,
-            $$c = $$el.checked ? true : false
-          if (Array.isArray($$a)) {
-            var $$v = null,
-              $$i = _vm._i($$a, $$v)
-            if ($$el.checked) {
-              $$i < 0 && _vm.$set(_vm.item, "completed", $$a.concat([$$v]))
+        change: [
+          function ($event) {
+            var $$a = _vm.item.completed,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false
+            if (Array.isArray($$a)) {
+              var $$v = null,
+                $$i = _vm._i($$a, $$v)
+              if ($$el.checked) {
+                $$i < 0 && _vm.$set(_vm.item, "completed", $$a.concat([$$v]))
+              } else {
+                $$i > -1 &&
+                  _vm.$set(
+                    _vm.item,
+                    "completed",
+                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                  )
+              }
             } else {
-              $$i > -1 &&
-                _vm.$set(
-                  _vm.item,
-                  "completed",
-                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                )
+              _vm.$set(_vm.item, "completed", $$c)
             }
-          } else {
-            _vm.$set(_vm.item, "completed", $$c)
-          }
-        },
+          },
+          function ($event) {
+            return _vm.updateTodo()
+          },
+        ],
       },
     }),
     _vm._v(" "),
@@ -48812,7 +48844,14 @@ var render = function () {
     _vm._v(" "),
     _c(
       "button",
-      { staticClass: "delete" },
+      {
+        staticClass: "delete",
+        on: {
+          click: function ($event) {
+            return _vm.removeTodo()
+          },
+        },
+      },
       [_c("font-awesome-icon", { attrs: { icon: "trash" } })],
       1
     ),
@@ -48847,7 +48886,17 @@ var render = function () {
       return _c(
         "div",
         { key: index },
-        [_c("list-item", { staticClass: "item", attrs: { item: item } })],
+        [
+          _c("list-item", {
+            staticClass: "item",
+            attrs: { item: item },
+            on: {
+              reloadTodos: function ($event) {
+                return _vm.getTodos()
+              },
+            },
+          }),
+        ],
         1
       )
     }),

@@ -2,8 +2,9 @@
     <div>
         <div v-for="(item, index) in items" :key="index">
             <list-item
-            :item="item"
-            class="item"
+                :item="item"
+                v-on:reloadTodos="getTodos()"
+                class="item"
             />
         </div>
     </div>
@@ -16,24 +17,25 @@ export default {
   components: {
       listItem
     //   ListItem
-   },
-   data: function() {
-       return {
-           items: []
-       }
-   },
-   methods: {
-       getTodos() {
-           axios.get('api/todos').then(response => {
-               if(response.status === 200) {
-                   this.items = response.data.todos
-               }
-           })
-       }
-   },
-   created() {
-       this.getTodos()
-   }
+  },
+
+  data: function(){
+      return {
+          items: []
+      }
+  },
+  methods: {
+      getTodos(){
+          axios.get('api/todos').then(response => {
+              if(response.status === 200) {
+                  this.items = response.data.todos
+              }
+          })
+      }
+  },
+  created() {
+      this.getTodos()
+  },
 
 }
 </script>

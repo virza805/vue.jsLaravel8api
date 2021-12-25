@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,11 @@ Route::post('add/category', [CategoryController::class, 'store']);
 Route::get('delete/category/{id}', [CategoryController::class, 'destroy']);
 
 Route::post('update/category/{id}', [CategoryController::class, 'update']);
+
+Route::post('add/product', [ProductController::class, 'store']);
+
+Route::get('products', [ProductController::class, 'index']);
+
+Route::get('delete/product/{id}', [ProductController::class, 'destroy']);
+
+Route::post('update/product/{id}', [ProductController::class, 'update']);

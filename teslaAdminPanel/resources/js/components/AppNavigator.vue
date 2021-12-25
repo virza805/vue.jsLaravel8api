@@ -15,8 +15,11 @@
       <v-btn class="ml-2" @click="() => this.$router.push('categories')" >
         Categories
       </v-btn>
-      <v-btn class="ml-2" >
+      <v-btn class="ml-2" @click="() => this.$router.push('products')" >
         Products
+      </v-btn>
+      <v-btn class="ml-2" @click="() => this.$router.push('addProduct')" >
+        Add Products
       </v-btn>
     </v-toolbar>
   </div>

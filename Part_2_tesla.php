@@ -58,13 +58,36 @@
 // npm i --save @fortawesome/vue-fontawesome@latest
 # |=>
 # npm install form-data |=> for upload image & controlle from Data
+
+
+##  |===>>>> teslaAdminPanel of Category part done <<<< ===|
+# php artisan make:model Product -m |=> for create new table in database 
+# goto database/migrations/2021_12_25_....._table.php || then write this bellow  & run |=> 
+/* Schema::create('products', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->text('description')->nullable();
+    $table->string('price');
+    $table->string('image');
+    $table->timestamps();
+});
+
+now you go app/Http/Models/Product.php
+and pest this code below 
+
+class Product extends Model
+{
+    use HasFactory;
+
+    protected $guarded = [];
+}
+
+*/
+# php artisan migrate |=>  run for create database table name product
+# php artisan make:controller ProductController -r  |=> for control CRUD in products
 #  |=> 
 #  |=> 
-#  |=> 
-#  |=> 
-#  |=> 
-#  |=> teslaAdminPanel of Category part done
-#  |=> 
+#  |=> Products & Category CRUD done
 #  |=> 
 #  |=> https://stackoverflow.com/questions/66502231/laravel-and-vuejs-project-it-shows-the-error-module-not-found-error-cant-res
 #  |=> npm install --save vue-router || npm run watch

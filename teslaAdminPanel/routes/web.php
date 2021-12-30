@@ -1,7 +1,10 @@
 <?php
 
 // namespace App\Models;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin/{any?}', function () { // admin/{any?}
+Route::group(['prefix' => 'admin'], function() {
+    Route::post('login', [LoginController::class, 'login']);
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+});
+
+Route::get('/admin/{any?}', function() { // admin/{any?}
     return view('welcome');
-})->middleware('auth');
+})->middleware('auth'); 
 
-Auth::routes();
+Route::get('{any?}', function() {
+    return view('welcome');
+}); // ->where('any', '.*');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/admin/category', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

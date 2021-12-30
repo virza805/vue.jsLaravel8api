@@ -35,3 +35,6 @@ Route::get('products', [ProductController::class, 'index']);
 Route::get('delete/product/{id}', [ProductController::class, 'destroy']);
 
 Route::post('update/product/{id}', [ProductController::class, 'update']);
+
+Route::get('latestProduct', [ProductController::class, 'latestProduct']);
+

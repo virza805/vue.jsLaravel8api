@@ -6,10 +6,11 @@ import vuetify from './vuetify';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPen, faTrash, faCamera } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faTrash, faCamera, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import coreState from './coreState'
 
-library.add(faPen, faTrash, faCamera)
+library.add(faPen, faTrash, faCamera, faSignOutAlt)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -35,7 +36,8 @@ const app = new Vue({
     components: {
         index
     },
-    vuetify
+    vuetify,
+    store: coreState
 });
 
 

@@ -87,11 +87,24 @@ class Product extends Model
 # php artisan make:controller ProductController -r  |=> for control CRUD in products
 #  |=> 
 #  |=> 
-#  |=> Products & Category CRUD done
+#  |=> Products & Category CRUD done <=| #
+#  |=> 
+# flow this link for login with sucrity |=> https://laravel.com/docs/8.x/sanctum
+#  |=> 
+# composer require laravel/sanctum || php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider" || php artisan migrate |=> 
+#  |=> 
+# php artisan make:migration add_product_category_id --table=products |=> 
+#  |=> 
+# npm install vuex --save |=> for card 
+# npm install --save vuex-persistedstate |=> 
+#  |=> 
+#  |=> 
 #  |=> 
 #  |=> https://stackoverflow.com/questions/66502231/laravel-and-vuejs-project-it-shows-the-error-module-not-found-error-cant-res
 #  |=> npm install --save vue-router || npm run watch
 
-
+/*
+admin || Login | Logout | Sanctum ==>> kaj kora na
+*/
 
 

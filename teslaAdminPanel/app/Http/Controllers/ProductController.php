@@ -13,8 +13,17 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('category')->get();
+        // $products = Product::all();
 
+        return response()->json([
+            'products' => $products
+        ]);
+    }
+
+    public function latestProduct()
+    {
+        $products = Product::with('category')->orderBy('updated_at', 'desc')->take(6)->get();
         return response()->json([
             'products' => $products
         ]);
@@ -43,11 +52,15 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->description = $request->description;
 
+        $product->category_id = $request->category_id;
+         // $product->save();
+
         if($request->image) {
             $image = $request->image;
             $image_new_name = time().$image->getClientOriginalName();
             $image->move('products/', $image_new_name);
             $product->image = $image_new_name;
+            // $product->save();
         }
         $product->save();
 
@@ -92,6 +105,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
+        $product->category_id = $request->category_id;
 
         if($request->image && $request->image !== $product->image){
             $image = $request->image;

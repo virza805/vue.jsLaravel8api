@@ -9,7 +9,7 @@
 #  |=> End Vuetify <=|
 
 
-///// ===> Tesla Admin Panel <=== \\\\\\\\
+///// ===> Tesla Admin Panel <=== \\\\\\\\ sanctum
 
 # composer create-project laravel/laravel teslaAdminPanel |=>
 # cd teslaAdminPanel |=> 

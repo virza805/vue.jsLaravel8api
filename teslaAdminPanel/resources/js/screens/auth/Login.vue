@@ -27,7 +27,7 @@ export default {
             }
         }
     },
-
+// to check this part
     methods: {
         handleLogin(){
             axios.get('/sanctum/csrf-cookie').then(response => {

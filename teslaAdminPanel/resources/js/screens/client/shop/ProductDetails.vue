@@ -15,7 +15,7 @@
                           <p class="headline font-weight-light pt-3">{{ product.price }}</p>
                           <v-spacer></v-spacer>
                       </v-card-actions>
-                      <p class="subtitle-1 font-weight-thin">{{ product.description }}</p>
+                      <div class="subtitle-1 font-weight-thin">{{ product.description }}</div>
 
                       <v-btn
                       @click="() => addItemToCart(product)"

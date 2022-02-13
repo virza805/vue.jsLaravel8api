@@ -4,19 +4,45 @@
             <div class="col-md-10 mb-4">
                 <h4 class="text-center">Welcome to the SPA in Laravel & Vue.js ( <b class="text-success">{{ currentUser.name }}</b> ) </h4>
                 <p class="text-center text-success">{{ currentUser.email }}</p>
+                <div class="menu">
+                <router-link class="btn btn-success"  to="/">Home</router-link>
+                <router-link class="btn btn-success text-center"  to="/allUsers">All Users</router-link>
                 <button class="btn btn-danger" @click="logout">Logout</button>
-        <router-link class="btn btn-primary float-right" to="/create">Create</router-link>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center profile-content">
+            <div class="col-md-6">
+                <img src="img/p-tanvir.jpg" alt="" srcset="" class="profile-img">
+            </div>
+            <div class="col-md-6">
+                <h2><b class="text-black">{{ currentUser.name }}</b></h2>
+                <h5>{{ currentUser.title }}</h5>
+                <p>{{ currentUser.dec }}</p>
+                <ul>
+                    <li><b>Join</b> : {{ currentUser.created_at }}</li>
+                    <li><b>Phone</b> : {{ currentUser.phone }}</li>
+                    <li><b>Email</b> : {{ currentUser.email }}</li>
+                </ul>
+                <div class="menu">
+                    <button class="btn btn-success" v-on:click="() => $router.push({name: 'UpdatedUser', params: {currentUser}})" > Update Now </button>
+                    <button class="btn btn-danger" v-on:click="deleteCategoryUser(category.id)" > Delete </button>
+                </div>
             </div>
         </div>
         <div class="row justify-content-center">
+            <router-link class="btn btn-primary text-center mb-4" to="/create">Create To Do</router-link>
+        </div>
+        <div class="row justify-content-center">
+
             <div class="col-md-10">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Email</th>
+                            <th>ToDo</th>
+                            <th>StartTime</th>
+                            <th>Comments</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -103,5 +129,22 @@
 </script>
 
 <style>
+    .profile-content img {
+        width: 100%;
+        border-radius: 13px;
+    }
 
+    .profile-content {
+        border: 1px solid #e3e2e2;
+        box-shadow: 3px 2px 10px #ddd;
+        padding: 30px 20px;
+        border-radius: 10px;
+        margin: 50px auto;
+    }
+    .menu {
+        display: flex;
+        align-content: center;
+        justify-content: space-between;
+        align-items: center;
+    }
 </style>

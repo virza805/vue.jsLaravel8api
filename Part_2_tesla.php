@@ -107,4 +107,7 @@ class Product extends Model
 admin || Login | Logout | Sanctum ==>> kaj kora na
 */
 
-
+# npm run production |=> 
+# User: pkleauia_tesla
+# Database: pkleauia_tesla
+# pass= *CzjHOe,~9V= |=> 

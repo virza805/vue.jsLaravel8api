@@ -37,8 +37,13 @@ Deny from all
 # use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful; |=>
 #  |=>
 #  |=>
-#  |=> ib-ktrV8ED8
 #  |=>
+
+ # npm install form-data |=> for upload image & controlle from Data
+# php artisan make:migration add_user_details --table=users |=>
+# php artisan migrate |=>
+
+# php artisan make:controller UserController -r |=>  |=> |=>
 
 
 

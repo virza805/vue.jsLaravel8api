@@ -16,11 +16,22 @@ class AuthController extends Controller
             'email'  => ['required', 'email', 'unique:users'],
             'password'  => ['required', 'min:6', 'confirmed'],
             'password_confirmation'  => ['required'],
+
+            'phone'  => ['required'],
+            'title'  => ['required'],
+            'dec'  => ['required'],
+            'img'  => ['required'],
+
         ]);
 
         User::create([
             'name'  => $request->name,
             'email'  => $request->email,
+
+            'phone'  => $request->phone,
+            'title'  => $request->title,
+            'dec'  => $request->dec,
+            'img'  => $request->img,
             'password'  => Hash::make($request->password),
         ]);
 

@@ -45,6 +45,10 @@ Deny from all
 #  |=> 
 
 
+# npm run production |=> 
+# User: pkleauia_laravelvue
+# Database: pkleauia_laravelvue
+# pass= #XWZC{uHY5N} |=> 
 
 
 

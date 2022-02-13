@@ -22,4 +22,11 @@ Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::post('logout', 'AuthController@logout')->middleware('auth:sanctum');
 
+
+Route::get('users', 'UserController@index');
+
+Route::get('delete/users/{id}', 'UserController@destroy');
+
+Route::post('update/users/{id}', 'UserController@update');
+
 // Route::post('create', [EmployeeController::class, 'create']);
